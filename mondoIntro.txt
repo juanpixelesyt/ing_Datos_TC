@@ -1,0 +1,105 @@
+show dbsdbs
+MongoshInvalidInputError: [COMMON-10001] 'dbsdbs' is not a valid argument for "show".
+show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   80.00 KiB
+use tienda
+switched to db tienda
+ 
+ 
+show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    80.00 KiB
+db.createCollection('productos')
+{ ok: 1 }
+productos
+ReferenceError: productos is not defined
+db.productos.insertOne({nombre:'laptop',precio:1200})
+{
+  acknowledged: true,
+  insertedId: ObjectId('680fcf1152b172be0eefc0b2')
+}
+db.productos.insertMany[{nombre:'mouse', precio: 100, cantidad:12},{nombre:'teclado', precio:200, cantidad:10},{nombre:'usb', precio:10, cantidad:20}]
+db.productos.insertMany[{nombre:'mouse', precio: 100, cantidad:12},{nombre:'teclado', precio:200, cantidad:10},{nombre:'usb', precio:10, cantidad:20}]
+db.productos.find()
+{
+  _id: ObjectId('680fcf1152b172be0eefc0b2'),
+  nombre: 'laptop',
+  precio: 1200
+}
+db.productos.insertMany[{nombre:'mouse', precio: 100},{nombre:'teclado', precio:200},{nombre:'usb', precio:10}]
+db.productos.find().pretty
+[Function: pretty] {
+  returnType: 'this',
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  apiVersions: [ 0, Infinity ],
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  returnsPromise: false,
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+db.productos.insertMany[{nombre:'mouse', precio: 100, cantidad:12},{nombre:'teclado', precio:200, cantidad:10},{nombre:'usb', precio:10, cantidad:20}]
+db.productos.find()
+{
+  _id: ObjectId('680fcf1152b172be0eefc0b2'),
+  nombre: 'laptop',
+  precio: 1200
+}
+db.productos.insertMany([{nombre:'mouse', precio: 100, cantidad:12},{nombre:'teclado', precio:200, cantidad:10},{nombre:'usb', precio:10, cantidad:20}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('680fd29952b172be0eefc0b3'),
+    '1': ObjectId('680fd29952b172be0eefc0b4'),
+    '2': ObjectId('680fd29952b172be0eefc0b5')
+  }
+}
+db.productos.find()
+{
+  _id: ObjectId('680fcf1152b172be0eefc0b2'),
+  nombre: 'laptop',
+  precio: 1200
+}
+{
+  _id: ObjectId('680fd29952b172be0eefc0b3'),
+  nombre: 'mouse',
+  precio: 100,
+  cantidad: 12
+}
+{
+  _id: ObjectId('680fd29952b172be0eefc0b4'),
+  nombre: 'teclado',
+  precio: 200,
+  cantidad: 10
+}
+{
+  _id: ObjectId('680fd29952b172be0eefc0b5'),
+  nombre: 'usb',
+  precio: 10,
+  cantidad: 20
+}
+db.productos.find({precio:{$ne:10}})
+{
+  _id: ObjectId('680fcf1152b172be0eefc0b2'),
+  nombre: 'laptop',
+  precio: 1200
+}
+{
+  _id: ObjectId('680fd29952b172be0eefc0b3'),
+  nombre: 'mouse',
+  precio: 100,
+  cantidad: 12
+}
+{
+  _id: ObjectId('680fd29952b172be0eefc0b4'),
+  nombre: 'teclado',
+  precio: 200,
+  cantidad: 10
+}
+db.productos.find({precio:{$ne:5}})
