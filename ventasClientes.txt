@@ -2,24 +2,21 @@ use tienda
 
 db.createCollection('ventas')
 
-db.ventas.insertmany([
-  { "_id": 1, "producto": "Laptop", "cantidad": 5, "precio": 1500, "vendido": true },
-  { "_id": 2, "producto": "Mouse", "cantidad": 10, "precio": 25, "vendido": false },
-  { "_id": 3, "producto": "Teclado", "cantidad": 7, "precio": 50, "vendido": true },
-  { "_id": 4, "producto": "Monitor", "cantidad": 3, "precio": 300, "vendido": true },
-  { "_id": 5, "producto": "Impresora", "cantidad": 2, "precio": 200, "vendido": false }
-])
+db.ventas.insertMany([{ id: 1, producto: "Laptop", cantidad: 5, "precio": 1500, vendido: true },
+  { id: 2, producto: "Mouse", cantidad: 10, "precio": 25, vendido: false },
+  { id: 3, producto: "Teclado", cantidad: 7, "precio": 50, vendido: true },
+  { id: 4, producto: "Monitor", cantidad: 3, "precio": 300, vendido: true },
+  { id: 5, producto: "Impresora", cantidad: 2, "precio": 200, vendido: false }])
 
 db.createCollection('clientes')
 
-db.clientes.insertMany[
-  { "_id": 1, "nombre": "Carlos", "edad": 30, "ciudad": "Bogota" },
-  { "_id": 2, "nombre": "Ana", "edad": 22, "ciudad": "Simijaca" },
-  { "_id": 3, "nombre": "Luis", "edad": 28, "ciudad": "Bogota" },
-  { "_id": 4, "nombre": "Marta", "edad": 35, "ciudad": "Chia" },
-  { "_id": 5, "nombre": "Pedro", "edad": 40, "ciudad": "Chia" }
-]
-
+db.clientes.insertMany([
+  { id: 1, nombre: "Carlos", edad: 30, ciudad: "Bogota" },
+  { id: 2, nombre: "Ana", edad: 22, ciudad: "Simijaca" },
+  { id: 3, nombre: "Luis", edad: 28, ciudad: "Bogota" },
+  { id: 4, nombre: "Marta", edad: 35, ciudad: "Chia" },
+  { id: 5, nombre: "Pedro", edad: 40, ciudad: "Chia" }
+])
 
 db.ventas.find({ "precio": { "$eq": 300 } })
 
