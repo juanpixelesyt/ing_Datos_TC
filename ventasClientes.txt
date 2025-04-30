@@ -1,0 +1,59 @@
+use tienda
+
+db.createCollection('ventas')
+
+db.ventas.insertmany
+  { "_id": 1, "producto": "Laptop", "cantidad": 5, "precio": 1500, "vendido": true },
+  { "_id": 2, "producto": "Mouse", "cantidad": 10, "precio": 25, "vendido": false },
+  { "_id": 3, "producto": "Teclado", "cantidad": 7, "precio": 50, "vendido": true },
+  { "_id": 4, "producto": "Monitor", "cantidad": 3, "precio": 300, "vendido": true },
+  { "_id": 5, "producto": "Impresora", "cantidad": 2, "precio": 200, "vendido": false }
+]
+
+db.createCollection('clientes')
+
+db.clientes.insertMany[
+  { "_id": 1, "nombre": "Carlos", "edad": 30, "ciudad": "Bogota" },
+  { "_id": 2, "nombre": "Ana", "edad": 22, "ciudad": "Simijaca" },
+  { "_id": 3, "nombre": "Luis", "edad": 28, "ciudad": "Bogota" },
+  { "_id": 4, "nombre": "Marta", "edad": 35, "ciudad": "Chia" },
+  { "_id": 5, "nombre": "Pedro", "edad": 40, "ciudad": "Chia" }
+]
+
+
+db.ventas.find({ "precio": { "$eq": 300 } })
+
+db.ventas.find({ "producto": { "$ne": "Mouse" } })
+
+db.ventas.find({ "cantidad": { "$gt": 5 } })
+
+db.clientes.find({ "edad": { "$gte": 30 } })
+
+db.clientes.find({ "edad": { "$lt": 30 } })
+
+db.clientes.find({ "edad": { "$lte": 28 } })
+
+db.clientes.find({ "ciudad": { "$in": ["Chia", "Simijaca"] } })
+
+db.clientes.find({ "ciudad": { "$nin": ["Simijaca"] } })
+
+db.ventas.find({ "$and": [ { "cantidad": { "$gt": 5 } }, { "precio": { "$gt": 100 } } ] })
+
+db.clientes.find({ "$or": [ { "ciudad": "Chia" }, { "edad": { "$gt": 35 } } ] })
+
+db.ventas.find({ "precio": { "$not": { "$gt": 1000 } } })
+
+db.clientes.find({ "$nor": [ { "ciudad": "Bogota" }, { "edad": { "$gt": 30 } } ] })
+
+db.ventas.find({ "vendido": { "$exists": true } })
+
+db.clientes.find({ "edad": { "$type": "int" } })
+
+
+
+
+
+
+
+
+
