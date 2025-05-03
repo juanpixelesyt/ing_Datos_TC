@@ -1,0 +1,206 @@
+db.alumno.insertMany([
+  { nombre: "Lucía Ramírez", fecha_nacimiento: ISODate("2002-07-18"), email: "lucia.ramirez@gmail.com", telefono: 5551234567 },
+  { nombre: "Carlos Méndez", fecha_nacimiento: ISODate("2000-11-05"), email: "carlos.mendez@gmail.com", telefono: 5559876543 },
+  { nombre: "Ana Gómez", fecha_nacimiento: ISODate("2001-03-22"), email: "ana.gomez@gmail.com", telefono: 5553332221 },
+  { nombre: "Luis Torres", fecha_nacimiento: ISODate("2003-02-14"), email: "luis.torres@gmail.com", telefono: 5557778889 },
+  { nombre: "María López", fecha_nacimiento: ISODate("2000-09-09"), email: "maria.lopez@gmail.com", telefono: 5554446666 }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68169f29402c0d90673e3154'),
+    '1': ObjectId('68169f29402c0d90673e3155'),
+    '2': ObjectId('68169f29402c0d90673e3156'),
+    '3': ObjectId('68169f29402c0d90673e3157'),
+    '4': ObjectId('68169f29402c0d90673e3158')
+  }
+}
+db.materia.insertMany()
+MongoshInvalidInputError: [COMMON-10001] Missing required argument at position 0 (Collection.insertMany)
+db.materia.insertMany([
+  {nombre: "Matemáticas", codigo: "MAT101", creditos: 6 },
+  {nombre: "Ingles", codigo: "ING202", creditos: 4 },
+  {nombre: "Programación", codigo: "PRO103", creditos: 8 },
+  {nombre: "Física", codigo: "FIS204", creditos: 6 },
+  {nombre: "Ensayos", codigo: "ENS305", creditos: 5 }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68169fd2402c0d90673e3159'),
+    '1': ObjectId('68169fd2402c0d90673e315a'),
+    '2': ObjectId('68169fd2402c0d90673e315b'),
+    '3': ObjectId('68169fd2402c0d90673e315c'),
+    '4': ObjectId('68169fd2402c0d90673e315d')
+  }
+}
+db.curso.insertMany([
+  {profesor: "Dra. Patricia Núñez", semestre: "2025A" },
+  {profesor: "Mtro. Jorge Rivera", semestre: "2025A" },
+  {profesor: "Ing. Claudia Ortega", semestre: "2025A" },
+  {profesor: "Dr. Arturo Salinas", semestre: "2025A" },
+  {profesor: "Lic. Daniela Gómez", semestre: "2025A" }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6816a0f5402c0d90673e315e'),
+    '1': ObjectId('6816a0f5402c0d90673e315f'),
+    '2': ObjectId('6816a0f5402c0d90673e3160'),
+    '3': ObjectId('6816a0f5402c0d90673e3161'),
+    '4': ObjectId('6816a0f5402c0d90673e3162')
+  }
+}
+db.calificacion.insertMany([
+  { nota: 85 },
+  { nota: 78 },
+  { nota: 92 },
+  { nota: 69 },
+  { nota: 88 }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6816a13d402c0d90673e3163'),
+    '1': ObjectId('6816a13d402c0d90673e3164'),
+    '2': ObjectId('6816a13d402c0d90673e3165'),
+    '3': ObjectId('6816a13d402c0d90673e3166'),
+    '4': ObjectId('6816a13d402c0d90673e3167')
+  }
+}
+db.calificacion.drop()
+true
+db.calificacion.finc()
+TypeError: db.calificacion.finc is not a function
+db.calificacion.find()
+db.createCollection('calificacion')
+{ ok: 1 }
+db.calificacion.insertMany([
+  {nota: "Sobresaliente" },
+  {nota: "Bueno" },
+  {nota: "Distinguido" },
+  {nota: "Suficiente" },
+  {nota: "Satisfactorio" }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6816a206402c0d90673e3168'),
+    '1': ObjectId('6816a206402c0d90673e3169'),
+    '2': ObjectId('6816a206402c0d90673e316a'),
+    '3': ObjectId('6816a206402c0d90673e316b'),
+    '4': ObjectId('6816a206402c0d90673e316c')
+  }
+}
+db.alumno.find()
+{
+  _id: ObjectId('68169f29402c0d90673e3154'),
+  nombre: 'Lucía Ramírez',
+  fecha_nacimiento: 2002-07-18T00:00:00.000Z,
+  email: 'lucia.ramirez@gmail.com',
+  telefono: 5551234567
+}
+{
+  _id: ObjectId('68169f29402c0d90673e3155'),
+  nombre: 'Carlos Méndez',
+  fecha_nacimiento: 2000-11-05T00:00:00.000Z,
+  email: 'carlos.mendez@gmail.com',
+  telefono: 5559876543
+}
+{
+  _id: ObjectId('68169f29402c0d90673e3156'),
+  nombre: 'Ana Gómez',
+  fecha_nacimiento: 2001-03-22T00:00:00.000Z,
+  email: 'ana.gomez@gmail.com',
+  telefono: 5553332221
+}
+{
+  _id: ObjectId('68169f29402c0d90673e3157'),
+  nombre: 'Luis Torres',
+  fecha_nacimiento: 2003-02-14T00:00:00.000Z,
+  email: 'luis.torres@gmail.com',
+  telefono: 5557778889
+}
+{
+  _id: ObjectId('68169f29402c0d90673e3158'),
+  nombre: 'María López',
+  fecha_nacimiento: 2000-09-09T00:00:00.000Z,
+  email: 'maria.lopez@gmail.com',
+  telefono: 5554446666
+}
+db.materia.find()
+{
+  _id: ObjectId('68169fd2402c0d90673e3159'),
+  nombre: 'Matemáticas',
+  codigo: 'MAT101',
+  creditos: 6
+}
+{
+  _id: ObjectId('68169fd2402c0d90673e315a'),
+  nombre: 'Ingles',
+  codigo: 'ING202',
+  creditos: 4
+}
+{
+  _id: ObjectId('68169fd2402c0d90673e315b'),
+  nombre: 'Programación',
+  codigo: 'PRO103',
+  creditos: 8
+}
+{
+  _id: ObjectId('68169fd2402c0d90673e315c'),
+  nombre: 'Física',
+  codigo: 'FIS204',
+  creditos: 6
+}
+{
+  _id: ObjectId('68169fd2402c0d90673e315d'),
+  nombre: 'Ensayos',
+  codigo: 'ENS305',
+  creditos: 5
+}
+db.curso.find()
+{
+  _id: ObjectId('6816a0f5402c0d90673e315e'),
+  profesor: 'Dra. Patricia Núñez',
+  semestre: '2025A'
+}
+{
+  _id: ObjectId('6816a0f5402c0d90673e315f'),
+  profesor: 'Mtro. Jorge Rivera',
+  semestre: '2025A'
+}
+{
+  _id: ObjectId('6816a0f5402c0d90673e3160'),
+  profesor: 'Ing. Claudia Ortega',
+  semestre: '2025A'
+}
+{
+  _id: ObjectId('6816a0f5402c0d90673e3161'),
+  profesor: 'Dr. Arturo Salinas',
+  semestre: '2025A'
+}
+{
+  _id: ObjectId('6816a0f5402c0d90673e3162'),
+  profesor: 'Lic. Daniela Gómez',
+  semestre: '2025A'
+}
+db.calificacion.find()
+{
+  _id: ObjectId('6816a206402c0d90673e3168'),
+  nota: 'Sobresaliente'
+}
+{
+  _id: ObjectId('6816a206402c0d90673e3169'),
+  nota: 'Bueno'
+}
+{
+  _id: ObjectId('6816a206402c0d90673e316a'),
+  nota: 'Distinguido'
+}
+{
+  _id: ObjectId('6816a206402c0d90673e316b'),
+  nota: 'Suficiente'
+}
+{
+  _id: ObjectId('6816a206402c0d90673e316c'),
+  nota: 'Satisfactorio'
+}
+test
+Selection deleted
+db.alumno.aggregate¨([{from:'alumno',localField:''}])
