@@ -1,0 +1,108 @@
+//Shell
+PS C:\Users\prestamour\Desktop\GomezJuanIngdatos\ProyectoExpress> npm run test
+Debugger attached.
+
+> proyectoexpress@1.0.0 test
+> echo "Error: no test specified" && exit 1
+
+"Error: no test specified" 
+Waiting for the debugger to disconnect...
+PS C:\Users\prestamour\Desktop\GomezJuanIngdatos\ProyectoExpress> npm  install express mongoose body-parser cors
+Debugger attached.
+
+added 19 packages, and audited 86 packages in 2s
+
+15 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Waiting for the debugger to disconnect...
+PS C:\Users\prestamour\Desktop\GomezJuanIngdatos\ProyectoExpress> npm install --save--dev nodemon
+Debugger attached.
+
+added 27 packages, and audited 113 packages in 1s
+
+19 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Waiting for the debugger to disconnect...
+PS C:\Users\prestamour\Desktop\GomezJuanIngdatos\ProyectoExpress> npm run test
+Debugger attached.
+
+> proyectoexpress@1.0.0 test
+> echo "Error: no test specified" && exit 1
+
+"Error: no test specified" 
+Waiting for the debugger to disconnect...
+PS C:\Users\prestamour\Desktop\GomezJuanIngdatos\ProyectoExpress> node index.ja
+Debugger attached.
+Waiting for the debugger to disconnect...
+node:internal/modules/cjs/loader:1228
+  throw err;
+  ^
+
+Error: Cannot find module 'C:\Users\prestamour\Desktop\GomezJuanIngdatos\ProyectoExpress\index.ja'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+    at Module._load (node:internal/modules/cjs/loader:1051:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)
+    at node:internal/main/run_main_module:28:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v20.17.0
+PS C:\Users\prestamour\Desktop\GomezJuanIngdatos\ProyectoExpress> node index.js
+Debugger attached.
+Servidor corriendo sobre http://localhost:3000
+
+//ya en java
+const express=require('express');
+const mongoose=require('mongoose');
+const bodyParser=require('body-parser');
+const cors=require('cors');
+
+
+const itemRoutes=require('./routes/productoRoutes')
+const app=express();
+
+const port=3000;
+
+//midleware
+
+app.use(bodyParser.json());
+app.use(cors);
+
+//conexión a mongo
+
+mongoose.connect('mongodb://localhost:27017/miapp',{
+    useNewUrlparser:true,
+    useUnifiedTopology:true,
+})
+.then(()=>console.log('MongoDb Conectado'))
+.catch(err=>console.error)
+
+//Rutas
+
+app.use('api/items',itemRoutes);
+
+
+app.listen(port,()=>{
+    console.log(`servidor conectado en http://localhost:${port}`);
+});
+
+
+
+//en modelos, la colección productos
+const mongoose=requiere('mongoose');
+
+const itemSchema=new mongoose.Schema({
+    nombre:{type:String,require:true},
+    descripcion:string,
+    creadoEn:{type:Date,default:Date.now}
+});
+module.exports=mongoose.model('item',itemSchema)
+
+
+
+//ProdutoRoutes
