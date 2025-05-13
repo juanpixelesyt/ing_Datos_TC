@@ -1,0 +1,223 @@
+//Taller repaso bases de datos noSQl
+//Parte 1 MongoShell
+use tallerMongoDB
+switched to db tallerMongoDB
+db.createCollection('usuarios')
+{ ok: 1 }
+
+//insertar usuarios
+db.usuarios.insertMany([{Nombre:'Juan Pérez', Edad: 30,Correo:'juan.perez@urosario.com'},{Nombre:'Ana López',Edad:25,Correo:'ana.lopez@ urosario.com'},{Nombre:'Luis Torres',Edad:35,Correo:'luis.torres@ urosario.com'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68236f4880abac58a25ce696'),
+    '1': ObjectId('68236f4880abac58a25ce697'),
+    '2': ObjectId('68236f4880abac58a25ce698')
+  }
+}
+
+//consultar usuarios
+db.usuarios.find()
+{
+  _id: ObjectId('68236f4880abac58a25ce696'),
+  Nombre: 'Juan Pérez',
+  Edad: 30,
+  Correo: 'juan.perez@urosario.com'
+}
+{
+  _id: ObjectId('68236f4880abac58a25ce697'),
+  Nombre: 'Ana López',
+  Edad: 25,
+  Correo: 'ana.lopez@ urosario.com'
+}
+{
+  _id: ObjectId('68236f4880abac58a25ce698'),
+  Nombre: 'Luis Torres',
+  Edad: 35,
+  Correo: 'luis.torres@ urosario.com'
+}
+
+//encontrar a Ana López
+db.usuarios.findOne({Nombre:{$eq:'Ana López'}})
+{
+  _id: ObjectId('68236f4880abac58a25ce697'),
+  Nombre: 'Ana López',
+  Edad: 25,
+  Correo: 'ana.lopez@ urosario.com'
+}
+
+//Encontrar los usuarios mayores o iguales a 30 años
+db.usuarios.find({Edad:{$gte:30}})
+{
+  _id: ObjectId('68236f4880abac58a25ce696'),
+  Nombre: 'Juan Pérez',
+  Edad: 30,
+  Correo: 'juan.perez@urosario.com'
+}
+{
+  _id: ObjectId('68236f4880abac58a25ce698'),
+  Nombre: 'Luis Torres',
+  Edad: 35,
+  Correo: 'luis.torres@ urosario.com'
+}
+
+//cambiar la edad de Juan Pérez a 31 años
+db.usuarios.updateOne({Nombre:'Juan Pérez'},{$set:{Edad:31}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+//Añadir el campo true a los usuarios que tengan 30 o más
+b.usuarios.updateMany({Edad:{$gte:30}},{$set:{Activo:true}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+db.usuarios.find()
+{
+  _id: ObjectId('68236f4880abac58a25ce696'),
+  Nombre: 'Juan Pérez',
+  Edad: 31,
+  Correo: 'juan.perez@urosario.com',
+  Activo: true
+}
+{
+  _id: ObjectId('68236f4880abac58a25ce697'),
+  Nombre: 'Ana López',
+  Edad: 25,
+  Correo: 'ana.lopez@ urosario.com'
+}
+{
+  _id: ObjectId('68236f4880abac58a25ce698'),
+  Nombre: 'Luis Torres',
+  Edad: 35,
+  Correo: 'luis.torres@ urosario.com',
+  Activo: true
+}
+
+//Eliminar a Luis Torres
+db.usuarios.deleteOne({Nombre:'Luis Torres'})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+
+//Eliminar a los usuarios menores o iguales a 30 años
+
+db.usuarios.deleteOne({Edad:{$lte:30}})
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+--------------------------------------------------------------------------------------------------
+//Parte 2
+
+use productos
+switched to db productos
+
+//Insertar productos
+db.productos.insertMany([
+  {nombre: "Smartphone Samsung Galaxy S22",precio: 799.99,categoria: "Electrónica"},
+  {nombre: "Aspiradora Dyson V11",precio: 599.00,categoria: "Hogar"},
+  {nombre: "Chaqueta de cuero",precio: 120.50,categoria: "Ropa"},
+  {nombre: "Televisor LG OLED 55\"",precio: 999.99,categoria: "Electrónica"},
+  {nombre: "Sofá de tres plazas",precio: 450.00,categoria: "Hogar"}
+])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68237913463129a816f3ba67'),
+    '1': ObjectId('68237913463129a816f3ba68'),
+    '2': ObjectId('68237913463129a816f3ba69'),
+    '3': ObjectId('68237913463129a816f3ba6a'),
+    '4': ObjectId('68237913463129a816f3ba6b')
+  }
+}
+
+//Consultar los productos que cuesten más de 500, lo cambié a conveniencia por los precios que registré
+db.productos.find({precio:{$gt:500}})
+{
+  _id: ObjectId('68237913463129a816f3ba67'),
+  nombre: 'Smartphone Samsung Galaxy S22',
+  precio: 799.99,
+  categoria: 'Electrónica'
+}
+{
+  _id: ObjectId('68237913463129a816f3ba68'),
+  nombre: 'Aspiradora Dyson V11',
+  precio: 599,
+  categoria: 'Hogar'
+}
+{
+  _id: ObjectId('68237913463129a816f3ba6a'),
+  nombre: 'Televisor LG OLED 55"',
+  precio: 999.99,
+  categoria: 'Electrónica'
+}
+
+//Ordenar los productos por el precio en orden descendente
+db.productos.find().sort({precio:-1})
+{
+  _id: ObjectId('68237913463129a816f3ba6a'),
+  nombre: 'Televisor LG OLED 55"',
+  precio: 999.99,
+  categoria: 'Electrónica'
+}
+{
+  _id: ObjectId('68237913463129a816f3ba67'),
+  nombre: 'Smartphone Samsung Galaxy S22',
+  precio: 799.99,
+  categoria: 'Electrónica'
+}
+{
+  _id: ObjectId('68237913463129a816f3ba68'),
+  nombre: 'Aspiradora Dyson V11',
+  precio: 599,
+  categoria: 'Hogar'
+}
+{
+  _id: ObjectId('68237913463129a816f3ba6b'),
+  nombre: 'Sofá de tres plazas',
+  precio: 450,
+  categoria: 'Hogar'
+}
+{
+  _id: ObjectId('68237913463129a816f3ba69'),
+  nombre: 'Chaqueta de cuero',
+  precio: 120.5,
+  categoria: 'Ropa'
+}
+
+//Añadir un campo stock a todos los productos en true
+db.productos.updateMany({},{$set:{Stock:true}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 5,
+  modifiedCount: 5,
+  upsertedCount: 0
+}
+
+//Cambiar el stock de los productos cuyo precio sea mayor a 500
+db.productos.updateMany({precio:{$gt:500}},{$set:{Stock:false}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+
+//Eliminar todos los productos cuyo precuo sea menor a 500
+db.productos.deleteMany({precio:{$lt:500}})
+{
+  acknowledged: true,
+  deletedCount: 2
+}
