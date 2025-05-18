@@ -221,3 +221,46 @@ db.productos.deleteMany({precio:{$lt:500}})
   acknowledged: true,
   deletedCount: 2
 }
+-------------------------------------------------------------------------------------
+//Parte 3
+//El precio promedio de los productos agrupados por categoría.
+db.Productos.aggregate([
+  {
+    $group: {
+      _id: "$categoria",
+      promedioPrecio: { $avg: "$precio" }
+    }
+  }
+])
+{
+  _id: 'Electrónica',
+  promedioPrecio: 899.99
+}
+{
+  _id: 'Hogar',
+  promedioPrecio: 524.5
+}
+{
+  _id: 'Ropa',
+  promedioPrecio: 120.5
+}
+
+
+//La categoria con mayor precio promedio
+db.Productos.aggregate([
+  {
+    $group: {
+      _id: "$categoria",
+      promedioPrecio: { $avg: "$precio" }
+    }
+  },
+  { $sort: { promedioPrecio: -1 } },
+  { $limit: 1 }
+])
+{
+  _id: 'Electrónica',
+  promedioPrecio: 899.99
+}
+
+
+
